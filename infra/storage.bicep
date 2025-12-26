@@ -13,9 +13,13 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   properties: {}
 }
 
+resource storageDeleteLock 'Microsoft.Authorization/locks@2020-05-01' = {
+  name: 'lock-${storageAccountName}-CanNotDelete'
+  scope: storage
+  properties: {
+    level: 'CanNotDelete'
+    notes: 'Protect storage account from deletion.'
+  }
+}
 
-
-
-output storageAccountId string = storage.id
-output storageAccountName string = storage.name
 
