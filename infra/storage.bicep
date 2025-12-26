@@ -15,7 +15,7 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
 
 /* Table storage resource */
 resource table 'Microsoft.Storage/storageAccounts/tableServices/tables@2022-09-01' = {
-  name: '${storage.name}/${AppName}'
+  name: '${storage.name}/deadlineapp'
 }
 
 output storageAccountId string = storage.id
