@@ -27,11 +27,9 @@ jobs:
           sudo apt-get install -y yq
 
       # Deploy Bicep file
-      - name: deploy bicep
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          template: ./infra/main.bicep
-          resourceGroupName: "rg-DeadlineApp"
-          parameters: ./infra/bicep.parameters.yml
-          failOnStdErr: false
+      - name: Deploy Bicep at subscription level
+        run: |
+          az deployment sub create \
+            --location westeurope \
+            --template-file infra/main.bicep \
+            --parameters ./infra/bicep.parameters.json
