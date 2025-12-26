@@ -1,37 +1,28 @@
-param location string = 'westeurope'
-param appName string
-param storageName string
+targetScope = 'subscription'
 
-resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: storageName
+param AppName string
+param location string
+param storageSku string
+
+// Generate names using string interpolation
+var rgName = 'rg-${AppName}'
+var storageName = 'storage${AppName}'
+
+resource newrg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: rgName
   location: location
-  sku: {
-    name: 'Standard_LRS'
-  }
-  kind: 'StorageV2'
 }
 
-resource appPlan 'Microsoft.Web/serverfarms@2022-09-01' = {
-  name: '${appName}-plan'
-  location: location
-  sku: {
-    name: 'B1'
-    tier: 'Basic'
-  }
-  properties: {
-    reserved: true
-  }
-}
-
-resource webApp 'Microsoft.Web/sites@2022-09-01' = {
-  name: appName
-  location: location
-  properties: {
-    serverFarmId: appPlan.id
-    siteConfig: {
-      linuxFxVersion: 'NODE|18-lts'
-    }
+module storageModule './storage.bicep' = {
+  name: 'storageModule'
+  scope: newrg
+  params: {
+    storageAccountName: storageName
+    location: location
+    skuName: storageSku
   }
 }
 
-output webAppUrl string = 'https://${webApp.properties.defaultHostName}'
+output storageId string = storageModule.outputs.storageAccountId
+output storageName string = storageModule.outputs.storageAccountName
+output resourceGroupName string = rgName

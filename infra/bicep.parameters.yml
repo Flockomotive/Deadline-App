@@ -1,0 +1,4 @@
+AppName: "deadlineapp"
+Environment: "prod"
+location: "westeurope"
+storageSku: "Standard_LRS"
