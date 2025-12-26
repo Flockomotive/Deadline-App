@@ -23,3 +23,5 @@ resource storageDeleteLock 'Microsoft.Authorization/locks@2020-05-01' = {
 }
 
 
+output storageAccountId string = storage.id
+output storageAccountName string = storage.name
