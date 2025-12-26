@@ -14,6 +14,8 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
 }
 
 
+
+
 output storageAccountId string = storage.id
 output storageAccountName string = storage.name
 
