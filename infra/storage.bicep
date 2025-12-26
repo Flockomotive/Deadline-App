@@ -1,5 +1,4 @@
 param storageAccountName string
-param AppName string 
 param location string = resourceGroup().location
 param skuName string 
 param kind string = 'StorageV2'
