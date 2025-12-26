@@ -10,48 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
+      # Checkout repo
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # 2️⃣ Login to Azure
+      # Login to Azure
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # 3️⃣ Install Bicep CLI and yq
+      # Install Bicep CLI and yq
       - name: Install Bicep and yq
         run: |
           az bicep install
           sudo apt-get install -y yq
 
- on: [push]
-name: Azure ARM
-permissions:
-  id-token: write
-  contents: read
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-
-      # Checkout code
-    - uses: actions/checkout@main
-
-      # Log into Azure
-    - uses: azure/login@v2
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
       # Deploy Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./infra/main.bicep
-        parameters: ./infra/bicep.parameters.yml'
-        failOnStdErr: false
+      - name: deploy bicep
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_CREDENTIALS.subscriptionId }}
+          template: ./infra/main.bicep
+          parameters: ./infra/bicep.parameters.yml
+          failOnStdErr: false
