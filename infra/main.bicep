@@ -22,6 +22,9 @@ module storageModule './storage.bicep' = {
 module tableService './storage.tableservice.bicep' = {
     name: 'tableServiceModule'
     scope: newrg
+    dependsOn: [
+      storageModule
+    ]
     params: {
       storageAccountName: 'storage${AppName}'
       tableName: AppName
