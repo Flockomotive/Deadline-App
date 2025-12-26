@@ -8,9 +8,6 @@
     "storageName": {
       "value": "storagedeadlineapp"
     },
-    "Environment": {
-      "value": "prod"
-    },
     "location": {
       "value": "westeurope"
     },
