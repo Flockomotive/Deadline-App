@@ -15,10 +15,12 @@ jobs:
         uses: actions/checkout@v3
 
       # Login to Azure
-      - name: Azure Login
-        uses: azure/login@v1
+      - name: login to Azure
+        uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       # Install Bicep CLI and yq
       - name: Install Bicep and yq
@@ -30,7 +32,7 @@ jobs:
       - name: deploy bicep
         uses: azure/arm-deploy@v1
         with:
-          subscriptionId: ${{ secrets.AZURE_CREDENTIALS.subscriptionId }}
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           template: ./infra/main.bicep
           parameters: ./infra/bicep.parameters.yml
           failOnStdErr: false
