@@ -20,6 +20,7 @@ module storageModule './storage.bicep' = {
     storageAccountName: storageName
     location: location
     skuName: storageSku
+    AppName: AppName
   }
 }
 
