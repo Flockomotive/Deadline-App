@@ -1,12 +1,9 @@
 targetScope = 'subscription'
 
-param AppName string
 param location string
 param storageSku string
-
-// Generate names using string interpolation
-var rgName = 'rg-${AppName}'
-var storageName = 'storage${AppName}'
+param storageName string
+param rgName string
 
 resource newrg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: rgName
