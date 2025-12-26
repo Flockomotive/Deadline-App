@@ -32,5 +32,6 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           template: ./infra/main.bicep
+          resourceGroupName: "rg-DeadlineApp"
           parameters: ./infra/bicep.parameters.yml
           failOnStdErr: false
