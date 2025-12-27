@@ -3,6 +3,7 @@ targetScope = 'subscription'
 param location string
 param storageSku string
 param AppName string
+param webAppSku string
 
 resource newrg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: 'rg_${AppName}'
@@ -38,7 +39,7 @@ module staticWebApp './staticwebapp.bicep' = {
   params: {
     webAppName: 'webapp-${AppName}'
     location: location
-    webAppSkuName: 'webapp-${AppName}'
+    webAppSkuName: webAppSku
   }
 }
 
