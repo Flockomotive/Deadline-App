@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - infra/**
+      - frontend/**
       - .github/workflows/deploy-infra.yml
 
 jobs:
