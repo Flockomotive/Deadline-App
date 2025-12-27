@@ -1,0 +1,17 @@
+{
+  "PartitionKey": "u#christian|m#202512",
+  "RowKey": "638708256000000000|d#9f2a1b",
+  "DeadlineId": "d#9f2a1b",
+  "UserId": "christian",
+  "Title": "USt-Voranmeldung abgeben",
+  "DueAtUtc": "2025-12-10T17:00:00Z",
+  "Timezone": "Europe/Berlin",
+  "Status": "open",
+  "Priority": 2,
+  "Category": "Finanzen",
+  "Tags": "tax;home",
+  "Notes": "ELSTER",
+  "ReminderMinutes": 1440,
+  "CreatedAtUtc": "2025-11-20T10:12:00Z",
+  "UpdatedAtUtc": "2025-11-20T10:12:00Z"
+}

@@ -32,5 +32,16 @@ module tableService './storage.tableservice.bicep' = {
 }
 
 
+module staticWebApp './staticwebapp.bicep' = {
+  name: 'staticWebApp'
+  scope: newrg
+  params: {
+    webAppName: 'webapp-${AppName}'
+    location: location
+    webAppSkuName: 'webapp-${AppName}'
+  }
+}
+
 output storageId string = storageModule.outputs.storageAccountId
 output storageName string = storageModule.outputs.storageAccountName
+
