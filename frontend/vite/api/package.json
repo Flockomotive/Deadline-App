@@ -1,0 +1,8 @@
+{
+  "name": "swa-api",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "@azure/data-tables": "^13.3.1"
+  }
+}
